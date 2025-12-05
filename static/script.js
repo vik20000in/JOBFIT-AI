@@ -209,6 +209,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleQuestionsBtn = document.getElementById('toggle-questions-btn');
         toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions';
         
+        // Update Formatting Tips (but keep it hidden initially)
+        const tipsList = document.getElementById('tips-list');
+        const formattingTipsContainer = document.getElementById('formatting-tips-container');
+        tipsList.innerHTML = '';
+        
+        if (data.formatting_tips && data.formatting_tips.length > 0) {
+            data.formatting_tips.forEach((tip) => {
+                const tipItem = document.createElement('div');
+                tipItem.className = `tip-item severity-${tip.severity}`;
+                
+                tipItem.innerHTML = `
+                    <div class="tip-header">
+                        <span class="tip-category">${tip.category}</span>
+                        <i class="fas ${tip.icon} tip-icon severity-${tip.severity}"></i>
+                    </div>
+                    <div class="tip-issue">${tip.issue}</div>
+                    <p class="tip-suggestion">${tip.suggestion}</p>
+                `;
+                
+                tipsList.appendChild(tipItem);
+            });
+        } else {
+            tipsList.innerHTML = '<p style="text-align:center; color:var(--text-muted);">No formatting tips available.</p>';
+        }
+        
+        // Reset to hidden state
+        formattingTipsContainer.classList.add('hidden');
+        const toggleTipsBtn = document.getElementById('toggle-tips-btn');
+        toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
+        
         // Update Upskilling Plan
         const planContainer = document.getElementById('plan-container');
         planContainer.innerHTML = '';
@@ -280,6 +310,20 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions';
         } else {
             toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Hide Potential Technical Interview Questions';
+        }
+    });
+    
+    // Toggle Formatting Tips Visibility
+    const toggleTipsBtn = document.getElementById('toggle-tips-btn');
+    const formattingTipsContainer = document.getElementById('formatting-tips-container');
+    
+    toggleTipsBtn.addEventListener('click', () => {
+        formattingTipsContainer.classList.toggle('hidden');
+        
+        if (formattingTipsContainer.classList.contains('hidden')) {
+            toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
+        } else {
+            toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Hide Resume Formatting Tips';
         }
     });
 });
