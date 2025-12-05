@@ -104,17 +104,19 @@
                     <div class="tab-panel active" id="match-score-panel">
                         <div class="match-score-section">
                             <h2><i class="fas fa-chart-line"></i> Match Analysis</h2>
-                            <div class="match-score">
-                                <div class="score-circle">
-                                    <svg viewBox="0 0 200 200">
-                                        <circle cx="100" cy="100" r="90" class="score-bg"></circle>
-                                        <circle cx="100" cy="100" r="90" class="score-progress" id="score-circle"></circle>
+                            <div class="score-card">
+                                <div class="score-circle-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__circle-bg" stroke="grey" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                                        <circle class="progress-ring__circle" stroke="blue" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
                                     </svg>
-                                    <div class="score-text" id="score-percentage">0%</div>
+                                    <div class="score-text">
+                                        <span id="score-value">0</span>%
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="skills-comparison">
+                            <div class="skills-analysis">
                                 <div class="skill-box matched">
                                     <h3><i class="fas fa-check-circle"></i> Matched Skills</h3>
                                     <ul id="matched-skills-list"></ul>
