@@ -208,6 +208,16 @@ textarea {
     box-shadow: 0 0 0 3px rgba(0, 85, 135, 0.1);\n}\n\n.action-section {
     text-align: center;
     margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-section button {
+    padding: 1.25rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-width: 200px;
 }\n\nbutton {
     background-color: var(--primary-color);
     color: white;
