@@ -477,10 +477,14 @@ footer {
 
 /* Cover Letter Section */
 .cover-letter-section {
-    margin-bottom: 3rem;
+    margin-top: 3rem;
 }
 
-.cover-letter-section h2 {
+#toggle-letter-btn {
+    margin-bottom: 1.5rem;
+}
+
+.cover-letter-container h2 {
     margin-bottom: 1.5rem;
     color: var(--primary-color);
     display: flex;
@@ -494,6 +498,7 @@ footer {
     padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid var(--border-color);
+    margin-top: 1rem;
 }
 
 #cover-letter-text {

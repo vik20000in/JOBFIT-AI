@@ -164,13 +164,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Update Cover Letter
+        // Update Cover Letter (but keep it hidden initially)
         const coverLetterText = document.getElementById('cover-letter-text');
+        const coverLetterContainer = document.getElementById('cover-letter-container');
         if (data.cover_letter) {
             coverLetterText.value = data.cover_letter;
         } else {
             coverLetterText.value = "Could not generate cover letter.";
         }
+        // Reset to hidden state
+        coverLetterContainer.classList.add('hidden');
+        const toggleLetterBtn = document.getElementById('toggle-letter-btn');
+        toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Show Smart Cover Letter';
         
         // Update Upskilling Plan
         const planContainer = document.getElementById('plan-container');
@@ -203,6 +208,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scroll to results
         resultsSection.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    // Toggle Cover Letter Visibility
+    const toggleLetterBtn = document.getElementById('toggle-letter-btn');
+    const coverLetterContainer = document.getElementById('cover-letter-container');
+    
+    toggleLetterBtn.addEventListener('click', () => {
+        coverLetterContainer.classList.toggle('hidden');
+        
+        if (coverLetterContainer.classList.contains('hidden')) {
+            toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Show Smart Cover Letter';
+        } else {
+            toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Hide Smart Cover Letter';
+        }
+    });
     
     // Copy Cover Letter Logic
     const copyBtn = document.getElementById('copy-letter-btn');

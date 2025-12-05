@@ -98,20 +98,21 @@
                     </div>
                 </div>
 
-                <div class="cover-letter-section">
-                    <h2><i class="fas fa-file-signature"></i> Smart Cover Letter</h2>
-                    <div class="cover-letter-container">
-                        <textarea id="cover-letter-text" readonly></textarea>
-                        <div class="cover-letter-actions">
-                            <button id="copy-letter-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="upskilling-plan">
                     <h2><i class="fas fa-rocket"></i> Upskilling Plan</h2>
                     <div id="plan-container">
                         <!-- Plan items will be injected here -->
+                    </div>
+                </div>
+
+                <div class="cover-letter-section">
+                    <button id="toggle-letter-btn" class="secondary-btn"><i class="fas fa-file-signature"></i> Show Smart Cover Letter</button>
+                    <div id="cover-letter-container" class="cover-letter-container hidden">
+                        <h2><i class="fas fa-file-signature"></i> Smart Cover Letter</h2>
+                        <textarea id="cover-letter-text" readonly></textarea>
+                        <div class="cover-letter-actions">
+                            <button id="copy-letter-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+                        </div>
                     </div>
                 </div>
             </div>
