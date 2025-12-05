@@ -4,11 +4,20 @@ from sentence_transformers import SentenceTransformer, util
 from utils.generator import generate_cover_letter
 from utils.interview_generator import generate_interview_questions
 
-# Load a lightweight, efficient model for semantic similarity
-# This runs locally and requires no API key
-print("Loading AI Model (all-MiniLM-L6-v2)...")
-model = SentenceTransformer('all-MiniLM-L6-v2')
-print("AI Model Loaded.")
+# Lazy load model - only initialize when first needed
+_model = None
+
+def get_model():
+    """
+    Lazy loads the AI model on first use.
+    This improves startup time significantly.
+    """
+    global _model
+    if _model is None:
+        print("Loading AI Model (all-MiniLM-L6-v2)...")
+        _model = SentenceTransformer('all-MiniLM-L6-v2')
+        print("AI Model Loaded.")
+    return _model
 
 # A small dictionary of common technical and soft skills for extraction
 COMMON_SKILLS = {
@@ -55,6 +64,9 @@ def calculate_semantic_match(jd_skills, resume_skills):
     if not resume_skills_list:
         return 0, [], jd_skills_list
 
+    # Get the lazy-loaded model
+    model = get_model()
+    
     # Encode skills to vector embeddings
     jd_embeddings = model.encode(jd_skills_list, convert_to_tensor=True)
     resume_embeddings = model.encode(resume_skills_list, convert_to_tensor=True)
