@@ -73,33 +73,12 @@
             </div>
 
             <div id="results-section" class="results-section hidden">
-                <div class="score-card">
-                    <h2>Match Score</h2>
-                    <div class="score-circle-container">
-                        <svg class="progress-ring" width="120" height="120">
-                            <circle class="progress-ring__circle-bg" stroke="grey" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                            <circle class="progress-ring__circle" stroke="blue" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                        </svg>
-                        <div class="score-text">
-                            <span id="score-value">0</span>%
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skills-analysis">
-                    <div class="skill-box matched">
-                        <h3><i class="fas fa-check-circle"></i> Matched Skills</h3>
-                        <ul id="matched-skills-list"></ul>
-                    </div>
-                    <div class="skill-box missing">
-                        <h3><i class="fas fa-exclamation-triangle"></i> Missing Skills</h3>
-                        <ul id="missing-skills-list"></ul>
-                    </div>
-                </div>
-
                 <!-- Tabbed Results Navigation -->
                 <div class="results-tabs">
-                    <button class="results-tab-btn active" data-tab="upskilling">
+                    <button class="results-tab-btn active" data-tab="match-score">
+                        <i class="fas fa-chart-line"></i> Match Score
+                    </button>
+                    <button class="results-tab-btn" data-tab="upskilling">
                         <i class="fas fa-rocket"></i> Upskilling Plan
                     </button>
                     <button class="results-tab-btn" data-tab="cover-letter">
@@ -121,8 +100,35 @@
 
                 <!-- Tab Content Panels -->
                 <div class="results-tab-content">
+                    <!-- Match Score Tab -->
+                    <div class="tab-panel active" id="match-score-panel">
+                        <div class="match-score-section">
+                            <h2><i class="fas fa-chart-line"></i> Match Analysis</h2>
+                            <div class="match-score">
+                                <div class="score-circle">
+                                    <svg viewBox="0 0 200 200">
+                                        <circle cx="100" cy="100" r="90" class="score-bg"></circle>
+                                        <circle cx="100" cy="100" r="90" class="score-progress" id="score-circle"></circle>
+                                    </svg>
+                                    <div class="score-text" id="score-percentage">0%</div>
+                                </div>
+                            </div>
+
+                            <div class="skills-comparison">
+                                <div class="skill-box matched">
+                                    <h3><i class="fas fa-check-circle"></i> Matched Skills</h3>
+                                    <ul id="matched-skills-list"></ul>
+                                </div>
+                                <div class="skill-box missing">
+                                    <h3><i class="fas fa-exclamation-triangle"></i> Missing Skills</h3>
+                                    <ul id="missing-skills-list"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Upskilling Plan Tab -->
-                    <div class="tab-panel active" id="upskilling-panel">
+                    <div class="tab-panel" id="upskilling-panel">
                         <div class="upskilling-plan">
                             <h2><i class="fas fa-rocket"></i> Upskilling Plan</h2>
                             <div id="plan-container">
