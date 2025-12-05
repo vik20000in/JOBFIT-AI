@@ -824,3 +824,216 @@ footer {
 .primary-btn:active {
     transform: translateY(0);
 }
+
+/* Company Insights Styles */
+.company-insights-section {
+    margin-top: 2rem;
+}
+
+.company-insights-container {
+    margin-top: 1.5rem;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.insight-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.insight-card h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.insight-card h3 i {
+    font-size: 1.3rem;
+}
+
+.insight-card h4 {
+    color: var(--text-main);
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.company-overview-card p {
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.company-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.meta-badge {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.culture-card #culture-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.culture-badge {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+}
+
+.culture-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.role-focus-card p {
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.salary-career {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.salary-info,
+.career-path {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.salary-info strong,
+.career-path strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.salary-info p,
+.career-path p {
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.emphasis-card ul,
+.tips-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.emphasis-card li,
+.tips-card li {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    transition: all 0.2s;
+}
+
+.emphasis-card li:hover,
+.tips-card li:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.flags-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.flags-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flags-section li {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    line-height: 1.5;
+    transition: all 0.2s;
+}
+
+#green-flags-list li {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--success-color);
+    color: var(--text-main);
+}
+
+#green-flags-list li:hover {
+    background-color: rgba(40, 167, 69, 0.2);
+    transform: translateX(5px);
+}
+
+#red-flags-list li {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--danger-color);
+    color: var(--text-main);
+}
+
+#red-flags-list li:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+    transform: translateX(5px);
+}
+
+/* Responsive Design for Insights */
+@media (max-width: 768px) {
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .salary-career {
+        gap: 0.75rem;
+    }
+}
+

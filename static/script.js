@@ -317,6 +317,113 @@ CERTIFICATIONS
         const toggleTipsBtn = document.getElementById('toggle-tips-btn');
         toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
         
+        // Update Company Insights (but keep it hidden initially)
+        if (data.company_insights) {
+            const insights = data.company_insights;
+            
+            // Company Overview
+            const companyOverview = document.getElementById('company-overview-text');
+            companyOverview.textContent = insights.insights.company_overview || 'No company information available.';
+            
+            // Company Meta
+            const companySize = document.getElementById('company-size');
+            const companyIndustry = document.getElementById('company-industry');
+            const companyLocation = document.getElementById('company-location');
+            
+            companySize.textContent = insights.company_info.company_size ? `📊 ${insights.company_info.company_size}` : '';
+            companySize.style.display = insights.company_info.company_size ? 'inline-block' : 'none';
+            
+            companyIndustry.textContent = insights.company_info.industry ? `🏢 ${insights.company_info.industry}` : '';
+            companyIndustry.style.display = insights.company_info.industry ? 'inline-block' : 'none';
+            
+            companyLocation.textContent = insights.company_info.location ? `📍 ${insights.company_info.location}` : '';
+            companyLocation.style.display = insights.company_info.location ? 'inline-block' : 'none';
+            
+            // Culture Signals
+            const cultureSignals = document.getElementById('culture-signals');
+            cultureSignals.innerHTML = '';
+            if (insights.culture_signals && insights.culture_signals.length > 0) {
+                insights.culture_signals.forEach(signal => {
+                    const badge = document.createElement('span');
+                    badge.className = 'culture-badge';
+                    badge.textContent = signal;
+                    cultureSignals.appendChild(badge);
+                });
+            } else {
+                cultureSignals.innerHTML = '<p style="color:var(--text-muted);">No specific culture signals detected.</p>';
+            }
+            
+            // Role Focus
+            const roleFocusText = document.getElementById('role-focus-text');
+            roleFocusText.textContent = insights.insights.role_focus || 'Role information not available.';
+            
+            // Salary Range
+            const salaryRange = document.getElementById('salary-range');
+            salaryRange.textContent = insights.insights.estimated_salary_range || 'Not specified';
+            
+            // Career Path
+            const careerPath = document.getElementById('career-path-text');
+            careerPath.textContent = insights.insights.career_path || 'Career path information not available.';
+            
+            // What to Emphasize
+            const emphasisList = document.getElementById('emphasis-list');
+            emphasisList.innerHTML = '';
+            if (insights.insights.what_to_emphasize && insights.insights.what_to_emphasize.length > 0) {
+                insights.insights.what_to_emphasize.forEach(point => {
+                    const li = document.createElement('li');
+                    li.textContent = point;
+                    emphasisList.appendChild(li);
+                });
+            } else {
+                emphasisList.innerHTML = '<li style="color:var(--text-muted);">No specific emphasis points.</li>';
+            }
+            
+            // Application Tips
+            const applicationTipsList = document.getElementById('application-tips-list');
+            applicationTipsList.innerHTML = '';
+            if (insights.insights.application_tips && insights.insights.application_tips.length > 0) {
+                insights.insights.application_tips.forEach(tip => {
+                    const li = document.createElement('li');
+                    li.textContent = tip;
+                    applicationTipsList.appendChild(li);
+                });
+            } else {
+                applicationTipsList.innerHTML = '<li style="color:var(--text-muted);">No specific tips available.</li>';
+            }
+            
+            // Green Flags
+            const greenFlagsList = document.getElementById('green-flags-list');
+            greenFlagsList.innerHTML = '';
+            if (insights.insights.green_flags && insights.insights.green_flags.length > 0) {
+                insights.insights.green_flags.forEach(flag => {
+                    const li = document.createElement('li');
+                    li.textContent = flag;
+                    greenFlagsList.appendChild(li);
+                });
+            } else {
+                greenFlagsList.innerHTML = '<li style="color:var(--text-muted);">No green flags identified.</li>';
+            }
+            
+            // Red Flags
+            const redFlagsList = document.getElementById('red-flags-list');
+            redFlagsList.innerHTML = '';
+            if (insights.insights.red_flags && insights.insights.red_flags.length > 0) {
+                insights.insights.red_flags.forEach(flag => {
+                    const li = document.createElement('li');
+                    li.textContent = flag;
+                    redFlagsList.appendChild(li);
+                });
+            } else {
+                redFlagsList.innerHTML = '<li style="color:var(--text-muted);">No red flags detected.</li>';
+            }
+        }
+        
+        // Reset to hidden state
+        const companyInsightsContainer = document.getElementById('company-insights-container');
+        companyInsightsContainer.classList.add('hidden');
+        const toggleInsightsBtn = document.getElementById('toggle-insights-btn');
+        toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Show Company & Role Insights';
+        
         /* Resume Builder - Hidden for future implementation
         // Update Resume Builder (but keep it hidden initially)
         const resumeBuilderText = document.getElementById('resume-builder-text');
@@ -417,6 +524,20 @@ CERTIFICATIONS
             toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
         } else {
             toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Hide Resume Formatting Tips';
+        }
+    });
+    
+    // Toggle Company Insights Visibility
+    const toggleInsightsBtn = document.getElementById('toggle-insights-btn');
+    const companyInsightsContainer = document.getElementById('company-insights-container');
+    
+    toggleInsightsBtn.addEventListener('click', () => {
+        companyInsightsContainer.classList.toggle('hidden');
+        
+        if (companyInsightsContainer.classList.contains('hidden')) {
+            toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Show Company & Role Insights';
+        } else {
+            toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Hide Company & Role Insights';
         }
     });
     

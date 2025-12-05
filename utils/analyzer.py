@@ -5,6 +5,7 @@ from utils.generator import generate_cover_letter, extract_name
 from utils.interview_generator import generate_interview_questions
 from utils.resume_formatter import analyze_resume_structure
 from utils.resume_builder import generate_resume_template
+from utils.company_insights import generate_company_insights
 
 # Load a lightweight, efficient model for semantic similarity
 # This runs locally and requires no API key
@@ -136,6 +137,9 @@ def analyze_job_match(jd_text, resume_text):
         missing_skills
     )
     
+    # Generate Company & Role Insights
+    company_insights = generate_company_insights(jd_text, matched_skills, missing_skills)
+    
     return {
         "score": match_score,
         "jd_skills": list(jd_skills),
@@ -146,5 +150,6 @@ def analyze_job_match(jd_text, resume_text):
         "cover_letter": cover_letter,
         "interview_questions": interview_questions,
         "formatting_tips": formatting_tips,
-        "improved_resume": improved_resume
+        "improved_resume": improved_resume,
+        "company_insights": company_insights
     }

@@ -136,6 +136,76 @@
                     </div>
                 </div>
 
+                <div class="company-insights-section">
+                    <button id="toggle-insights-btn" class="secondary-btn"><i class="fas fa-building"></i> Show Company & Role Insights</button>
+                    <div id="company-insights-container" class="company-insights-container hidden">
+                        <h2><i class="fas fa-building"></i> Company & Role Insights</h2>
+                        
+                        <div class="insights-grid">
+                            <div class="insight-card company-overview-card">
+                                <h3><i class="fas fa-info-circle"></i> Company Overview</h3>
+                                <p id="company-overview-text"></p>
+                                <div class="company-meta">
+                                    <span id="company-size" class="meta-badge"></span>
+                                    <span id="company-industry" class="meta-badge"></span>
+                                    <span id="company-location" class="meta-badge"></span>
+                                </div>
+                            </div>
+
+                            <div class="insight-card culture-card">
+                                <h3><i class="fas fa-users"></i> Company Culture</h3>
+                                <div id="culture-signals">
+                                    <!-- Culture signals will be injected here -->
+                                </div>
+                            </div>
+
+                            <div class="insight-card role-focus-card">
+                                <h3><i class="fas fa-briefcase"></i> Role Focus</h3>
+                                <p id="role-focus-text"></p>
+                                <div class="salary-career">
+                                    <div class="salary-info">
+                                        <strong><i class="fas fa-dollar-sign"></i> Estimated Salary:</strong>
+                                        <p id="salary-range"></p>
+                                    </div>
+                                    <div class="career-path">
+                                        <strong><i class="fas fa-chart-line"></i> Career Path:</strong>
+                                        <p id="career-path-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="insight-card emphasis-card">
+                                <h3><i class="fas fa-star"></i> What to Emphasize</h3>
+                                <ul id="emphasis-list">
+                                    <!-- Emphasis points will be injected here -->
+                                </ul>
+                            </div>
+
+                            <div class="insight-card tips-card">
+                                <h3><i class="fas fa-lightbulb"></i> Application Tips</h3>
+                                <ul id="application-tips-list">
+                                    <!-- Application tips will be injected here -->
+                                </ul>
+                            </div>
+
+                            <div class="insight-card flags-card">
+                                <div class="flags-section">
+                                    <h4><i class="fas fa-check-circle"></i> Green Flags</h4>
+                                    <ul id="green-flags-list">
+                                        <!-- Green flags will be injected here -->
+                                    </ul>
+                                </div>
+                                <div class="flags-section">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Red Flags</h4>
+                                    <ul id="red-flags-list">
+                                        <!-- Red flags will be injected here -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Resume Builder - Hidden for future implementation
                 <div class="resume-builder-section">
                     <button id="toggle-builder-btn" class="secondary-btn"><i class="fas fa-file-edit"></i> Show Improved Resume Builder</button>
