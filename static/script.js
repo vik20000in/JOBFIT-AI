@@ -185,6 +185,17 @@ CERTIFICATIONS
         analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Analyze Match';
     }
     
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
+    
     function displayResults(data) {
         resultsSection.classList.remove('hidden');
         
@@ -424,6 +435,98 @@ CERTIFICATIONS
         const toggleInsightsBtn = document.getElementById('toggle-insights-btn');
         toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Show Company & Role Insights';
         
+        // Update Tailoring Workbench
+        if (data.tailoring_data) {
+            const tailoringData = data.tailoring_data;
+            
+            // Update improvement stats
+            const improvementSummary = tailoringData.improvement_summary;
+            document.getElementById('skills-added-stat').textContent = improvementSummary.skills_added || 0;
+            document.getElementById('lines-enhanced-stat').textContent = improvementSummary.lines_enhanced || 0;
+            document.getElementById('total-changes-stat').textContent = improvementSummary.total_changes || 0;
+            document.getElementById('coverage-improvement').textContent = `Estimated improvement: ${improvementSummary.coverage_improvement}`;
+            
+            // Display suggestions
+            const suggestionsList = document.getElementById('suggestions-list');
+            suggestionsList.innerHTML = '';
+            
+            if (tailoringData.suggestions && tailoringData.suggestions.length > 0) {
+                // Group by priority
+                const highPriority = tailoringData.suggestions.filter(s => s.priority === 'high');
+                const mediumPriority = tailoringData.suggestions.filter(s => s.priority === 'medium');
+                
+                if (highPriority.length > 0) {
+                    const highSection = document.createElement('div');
+                    highSection.className = 'priority-section';
+                    highSection.innerHTML = '<h4><i class="fas fa-star"></i> High Priority</h4>';
+                    highPriority.forEach(suggestion => {
+                        const suggestionCard = document.createElement('div');
+                        suggestionCard.className = 'suggestion-card priority-high';
+                        suggestionCard.innerHTML = `
+                            <div class="suggestion-skill">${suggestion.skill}</div>
+                            <div class="suggestion-text">${suggestion.suggestion}</div>
+                            <div class="suggestion-location"><i class="fas fa-map-marker-alt"></i> ${suggestion.location}</div>
+                        `;
+                        highSection.appendChild(suggestionCard);
+                    });
+                    suggestionsList.appendChild(highSection);
+                }
+                
+                if (mediumPriority.length > 0 && mediumPriority.length <= 5) {
+                    const mediumSection = document.createElement('div');
+                    mediumSection.className = 'priority-section';
+                    mediumSection.innerHTML = '<h4><i class="fas fa-circle"></i> Medium Priority</h4>';
+                    mediumPriority.slice(0, 5).forEach(suggestion => {
+                        const suggestionCard = document.createElement('div');
+                        suggestionCard.className = 'suggestion-card priority-medium';
+                        suggestionCard.innerHTML = `
+                            <div class="suggestion-skill">${suggestion.skill}</div>
+                            <div class="suggestion-text">${suggestion.suggestion}</div>
+                            <div class="suggestion-location"><i class="fas fa-map-marker-alt"></i> ${suggestion.location}</div>
+                        `;
+                        mediumSection.appendChild(suggestionCard);
+                    });
+                    suggestionsList.appendChild(mediumSection);
+                }
+            } else {
+                suggestionsList.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Your resume is already well-optimized!</p>';
+            }
+            
+            // Display original resume
+            const originalDisplay = document.getElementById('original-resume-display');
+            originalDisplay.textContent = tailoringData.original_resume;
+            
+            // Display tailored resume with highlights
+            const tailoredDisplay = document.getElementById('tailored-resume-display');
+            const tailoredText = tailoringData.tailored_resume;
+            
+            // Simple highlighting: show additions in green
+            if (tailoringData.highlights && tailoringData.highlights.length > 0) {
+                let highlightedHTML = escapeHtml(tailoredText);
+                
+                // Highlight added skills (simple approach - wrap added text)
+                tailoringData.highlights.forEach(highlight => {
+                    if (highlight.type === 'addition') {
+                        const textToHighlight = escapeHtml(highlight.text);
+                        highlightedHTML = highlightedHTML.replace(
+                            textToHighlight,
+                            `<span class="highlight-addition">${textToHighlight}</span>`
+                        );
+                    }
+                });
+                
+                tailoredDisplay.innerHTML = highlightedHTML;
+            } else {
+                tailoredDisplay.textContent = tailoredText;
+            }
+        }
+        
+        // Reset to hidden state
+        const tailoringWorkbenchContainer = document.getElementById('tailoring-workbench-container');
+        tailoringWorkbenchContainer.classList.add('hidden');
+        const toggleWorkbenchBtn = document.getElementById('toggle-workbench-btn');
+        toggleWorkbenchBtn.innerHTML = '<i class="fas fa-tools"></i> Show Resume Tailoring Workbench';
+        
         /* Resume Builder - Hidden for future implementation
         // Update Resume Builder (but keep it hidden initially)
         const resumeBuilderText = document.getElementById('resume-builder-text');
@@ -539,6 +642,54 @@ CERTIFICATIONS
         } else {
             toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Hide Company & Role Insights';
         }
+    });
+    
+    // Toggle Tailoring Workbench Visibility
+    const toggleWorkbenchBtn = document.getElementById('toggle-workbench-btn');
+    const tailoringWorkbenchContainer = document.getElementById('tailoring-workbench-container');
+    
+    toggleWorkbenchBtn.addEventListener('click', () => {
+        tailoringWorkbenchContainer.classList.toggle('hidden');
+        
+        if (tailoringWorkbenchContainer.classList.contains('hidden')) {
+            toggleWorkbenchBtn.innerHTML = '<i class="fas fa-tools"></i> Show Resume Tailoring Workbench';
+        } else {
+            toggleWorkbenchBtn.innerHTML = '<i class="fas fa-tools"></i> Hide Resume Tailoring Workbench';
+        }
+    });
+    
+    // Copy Tailored Resume
+    const copyTailoredBtn = document.getElementById('copy-tailored-btn');
+    copyTailoredBtn.addEventListener('click', () => {
+        const tailoredText = document.getElementById('tailored-resume-display').textContent;
+        navigator.clipboard.writeText(tailoredText).then(() => {
+            const originalText = copyTailoredBtn.innerHTML;
+            copyTailoredBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyTailoredBtn.innerHTML = originalText;
+            }, 2000);
+        });
+    });
+    
+    // Download Tailored Resume
+    const downloadTailoredBtn = document.getElementById('download-tailored-btn');
+    downloadTailoredBtn.addEventListener('click', () => {
+        const tailoredText = document.getElementById('tailored-resume-display').textContent;
+        const blob = new Blob([tailoredText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Tailored_Resume_' + new Date().toISOString().split('T')[0] + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        const originalText = downloadTailoredBtn.innerHTML;
+        downloadTailoredBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+        setTimeout(() => {
+            downloadTailoredBtn.innerHTML = originalText;
+        }, 2000);
     });
     
     /* Resume Builder - Hidden for future implementation

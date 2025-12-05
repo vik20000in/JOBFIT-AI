@@ -206,6 +206,60 @@
                     </div>
                 </div>
 
+                <div class="tailoring-workbench-section">
+                    <button id="toggle-workbench-btn" class="secondary-btn"><i class="fas fa-tools"></i> Show Resume Tailoring Workbench</button>
+                    <div id="tailoring-workbench-container" class="tailoring-workbench-container hidden">
+                        <h2><i class="fas fa-tools"></i> Resume Tailoring Workbench</h2>
+                        <p class="workbench-description">
+                            See exactly where to add missing skills to maximize your match score. 
+                            <strong id="coverage-improvement"></strong>
+                        </p>
+                        
+                        <div class="improvement-stats">
+                            <div class="stat-card">
+                                <i class="fas fa-plus-circle"></i>
+                                <div class="stat-value" id="skills-added-stat">0</div>
+                                <div class="stat-label">Skills Added</div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-edit"></i>
+                                <div class="stat-value" id="lines-enhanced-stat">0</div>
+                                <div class="stat-label">Lines Enhanced</div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-check-double"></i>
+                                <div class="stat-value" id="total-changes-stat">0</div>
+                                <div class="stat-label">Total Changes</div>
+                            </div>
+                        </div>
+
+                        <div class="suggestions-panel">
+                            <h3><i class="fas fa-lightbulb"></i> Tailoring Suggestions</h3>
+                            <div id="suggestions-list" class="suggestions-list">
+                                <!-- Suggestions will be injected here -->
+                            </div>
+                        </div>
+
+                        <div class="diff-viewer">
+                            <div class="diff-column">
+                                <h3><i class="fas fa-file-alt"></i> Your Original Resume</h3>
+                                <pre id="original-resume-display" class="resume-display"></pre>
+                            </div>
+                            <div class="diff-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="diff-column">
+                                <h3><i class="fas fa-file-signature"></i> AI-Tailored Version</h3>
+                                <pre id="tailored-resume-display" class="resume-display highlighted"></pre>
+                                <div class="diff-actions">
+                                    <button id="copy-tailored-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy Tailored Resume</button>
+                                    <button id="download-tailored-btn" class="primary-btn"><i class="fas fa-download"></i> Download</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Resume Builder - Hidden for future implementation
                 <div class="resume-builder-section">
                     <button id="toggle-builder-btn" class="secondary-btn"><i class="fas fa-file-edit"></i> Show Improved Resume Builder</button>
