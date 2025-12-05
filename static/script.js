@@ -8,6 +8,84 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsSection = document.getElementById('results-section');
     const themeSelect = document.getElementById('theme-select');
     
+    // Load default Job Description and Resume for debugging
+    const defaultJD = `Senior Full Stack Developer
+
+We are seeking an experienced Full Stack Developer to join our dynamic team.
+
+Required Skills:
+- Python (Django/Flask)
+- JavaScript (React, Node.js)
+- SQL and NoSQL databases (PostgreSQL, MongoDB)
+- RESTful APIs and microservices
+- Git version control
+- Docker and Kubernetes
+- AWS or Azure cloud platforms
+- Agile/Scrum methodologies
+
+Preferred Skills:
+- Machine Learning basics
+- CI/CD pipelines
+- TypeScript
+- GraphQL
+- Redis caching
+
+Responsibilities:
+- Design and implement scalable web applications
+- Collaborate with cross-functional teams
+- Write clean, maintainable code
+- Participate in code reviews
+- Mentor junior developers
+
+Experience: 5+ years in software development
+Education: Bachelor's degree in Computer Science or related field`;
+
+    const defaultResume = `John Doe
+Senior Software Engineer
+Email: john.doe@email.com | Phone: (555) 123-4567
+LinkedIn: linkedin.com/in/johndoe | GitHub: github.com/johndoe
+
+PROFESSIONAL SUMMARY
+Experienced Full Stack Developer with 6+ years building scalable web applications. Expert in Python, JavaScript, and cloud technologies. Passionate about clean code and agile practices.
+
+TECHNICAL SKILLS
+Languages: Python, JavaScript, Java, SQL
+Frameworks: Django, Flask, React, Node.js, Express
+Databases: PostgreSQL, MySQL, MongoDB
+Cloud: AWS (EC2, S3, Lambda), Docker
+Tools: Git, Jenkins, JIRA, VS Code
+
+WORK EXPERIENCE
+
+Senior Software Engineer | Tech Solutions Inc. | 2021 - Present
+- Developed microservices architecture using Python Flask and Docker
+- Built RESTful APIs serving 100K+ daily requests
+- Implemented CI/CD pipelines reducing deployment time by 60%
+- Mentored 3 junior developers in best practices
+
+Full Stack Developer | Startup XYZ | 2019 - 2021
+- Created React-based dashboards with real-time data visualization
+- Designed PostgreSQL database schemas for e-commerce platform
+- Integrated payment gateways (Stripe, PayPal)
+- Collaborated in Agile sprints with cross-functional teams
+
+Software Developer | Legacy Corp | 2018 - 2019
+- Maintained Java-based enterprise applications
+- Wrote automated tests achieving 85% code coverage
+- Optimized database queries improving performance by 40%
+
+EDUCATION
+Bachelor of Science in Computer Science
+State University | 2018
+
+CERTIFICATIONS
+- AWS Certified Developer - Associate
+- Certified Scrum Master (CSM)`;
+
+    // Auto-populate text areas
+    jdInput.value = defaultJD;
+    resumeInput.value = defaultResume;
+    
     // Theme Switching Logic
     themeSelect.addEventListener('change', (e) => {
         const theme = e.target.value;
