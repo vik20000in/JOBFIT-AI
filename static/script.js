@@ -140,13 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 planItem.innerHTML = `
                     <div class="plan-info">
-                        <h4>${item.skill}</h4>
+                        <h4><i class="fas fa-graduation-cap"></i> ${item.skill}</h4>
                         <p><strong>Course:</strong> ${item.course_name}</p>
                         <p><strong>Task:</strong> ${item.practice_task}</p>
                     </div>
                     <div class="plan-meta">
-                        <span class="timeline">⏱ ${item.timeline}</span>
-                        <a href="${item.link}" class="course-link" target="_blank">View Course &rarr;</a>
+                        <span class="timeline"><i class="fas fa-clock"></i> ${item.timeline}</span>
+                        <a href="${item.link}" class="course-link" target="_blank">Start Learning <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `;
                 
