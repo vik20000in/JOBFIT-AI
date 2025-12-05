@@ -2,6 +2,7 @@ import re
 import random
 from sentence_transformers import SentenceTransformer, util
 from utils.generator import generate_cover_letter
+from utils.interview_generator import generate_interview_questions
 
 # Load a lightweight, efficient model for semantic similarity
 # This runs locally and requires no API key
@@ -117,6 +118,9 @@ def analyze_job_match(jd_text, resume_text):
     # Generate Cover Letter
     cover_letter = generate_cover_letter(jd_text, matched_skills, resume_text)
     
+    # Generate Interview Questions
+    interview_questions = generate_interview_questions(jd_text, matched_skills, num_questions=5)
+    
     return {
         "score": match_score,
         "jd_skills": list(jd_skills),
@@ -124,5 +128,6 @@ def analyze_job_match(jd_text, resume_text):
         "matched_skills": matched_skills,
         "missing_skills": missing_skills,
         "upskilling_plan": upskilling_plan,
-        "cover_letter": cover_letter
+        "cover_letter": cover_letter,
+        "interview_questions": interview_questions
     }

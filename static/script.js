@@ -177,6 +177,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleLetterBtn = document.getElementById('toggle-letter-btn');
         toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Show Smart Cover Letter';
         
+        // Update Interview Questions (but keep it hidden initially)
+        const questionsList = document.getElementById('questions-list');
+        const interviewQuestionsContainer = document.getElementById('interview-questions-container');
+        questionsList.innerHTML = '';
+        
+        if (data.interview_questions && data.interview_questions.length > 0) {
+            data.interview_questions.forEach((q, index) => {
+                const questionItem = document.createElement('div');
+                questionItem.className = 'question-item';
+                
+                questionItem.innerHTML = `
+                    <div class="question-header">
+                        <span class="question-skill"><i class="fas fa-code"></i> ${q.skill}</span>
+                        <div class="question-badges">
+                            <span class="badge difficulty-${q.difficulty}">${q.difficulty.toUpperCase()}</span>
+                            <span class="badge category">${q.category}</span>
+                        </div>
+                    </div>
+                    <p class="question-text">${q.question}</p>
+                `;
+                
+                questionsList.appendChild(questionItem);
+            });
+        } else {
+            questionsList.innerHTML = '<p style="text-align:center; color:var(--text-muted);">No interview questions generated.</p>';
+        }
+        
+        // Reset to hidden state
+        interviewQuestionsContainer.classList.add('hidden');
+        const toggleQuestionsBtn = document.getElementById('toggle-questions-btn');
+        toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions';
+        
         // Update Upskilling Plan
         const planContainer = document.getElementById('plan-container');
         planContainer.innerHTML = '';
@@ -235,5 +267,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             copyBtn.innerHTML = originalText;
         }, 2000);
+    });
+    
+    // Toggle Interview Questions Visibility
+    const toggleQuestionsBtn = document.getElementById('toggle-questions-btn');
+    const interviewQuestionsContainer = document.getElementById('interview-questions-container');
+    
+    toggleQuestionsBtn.addEventListener('click', () => {
+        interviewQuestionsContainer.classList.toggle('hidden');
+        
+        if (interviewQuestionsContainer.classList.contains('hidden')) {
+            toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions';
+        } else {
+            toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Hide Potential Technical Interview Questions';
+        }
     });
 });

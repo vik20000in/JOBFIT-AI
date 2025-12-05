@@ -539,3 +539,101 @@ footer {
     background-color: var(--primary-color);
     color: white;
 }
+
+/* Interview Questions Section */
+.interview-questions-section {
+    margin-top: 3rem;
+}
+
+#toggle-questions-btn {
+    margin-bottom: 1.5rem;
+}
+
+.interview-questions-container {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-top: 1rem;
+}
+
+.interview-questions-container h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+}
+
+#questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.question-item {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.question-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.question-skill {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.question-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.badge.difficulty-easy {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge.difficulty-medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge.difficulty-hard {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.badge.category {
+    background-color: var(--bg-color);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+
+.question-text {
+    color: var(--text-main);
+    line-height: 1.6;
+    font-size: 1rem;
+}
