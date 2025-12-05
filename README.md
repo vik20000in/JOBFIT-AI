@@ -14,6 +14,7 @@
 - **💡 Technical Interview Questions**: AI-generated interview questions specific to the job role with difficulty levels and categories
 - **🏢 Company & Role Insights**: Comprehensive analysis including company culture, salary estimates, career paths, and strategic application tips
 - **✨ Resume Formatting Tips**: AI-powered analysis of resume structure with actionable suggestions
+- **🔧 Resume Tailoring Workbench**: Side-by-side diff view showing original vs. AI-tailored resume with specific insertion points for missing skills
 
 ### User Experience
 - **🎨 Enterprise UI**: Professional, Wipro-inspired design with multiple themes (Enterprise Blue, Modern Dark, Clean Minimal)
@@ -96,6 +97,7 @@
    - 💡 **Interview Prep**: Click "Show Potential Technical Interview Questions" for role-specific questions
    - ✨ **Formatting Tips**: Click "Show Resume Formatting Tips" for structure improvements
    - 🏢 **Company Insights**: Click "Show Company & Role Insights" for strategic intelligence
+   - 🔧 **Tailoring Workbench**: Click "Show Resume Tailoring Workbench" to see exactly where to add missing skills
 
 ### Pro Tips
 - Use specific job descriptions for better accuracy
@@ -120,7 +122,8 @@ jobfit-ai/
 │   ├── interview_generator.py # Interview question generation
 │   ├── resume_formatter.py    # Resume structure analysis
 │   ├── resume_builder.py      # Resume template generation
-│   └── company_insights.py    # Company & role analysis
+│   ├── company_insights.py    # Company & role analysis
+│   └── resume_tailor.py       # Resume tailoring & diff engine
 ├── templates/
 │   └── index.html             # Main HTML template
 └── static/
@@ -133,7 +136,8 @@ jobfit-ai/
 ## 🚀 Roadmap & Future Enhancements
 
 ### Phase 1: Enhanced Analysis 🔍
-- [ ] **Resume Section Parser**: Automatically extract work experience, education, certifications, and projects
+- [x] **Resume Section Parser**: Automatically extract work experience, education, certifications, and projects ✅
+- [x] **Resume Diff & Auto-Tailoring**: Side-by-side comparison with intelligent skill insertion suggestions ✅
 - [ ] **ATS Score**: Calculate Applicant Tracking System compatibility score
 - [ ] **Keyword Density Analysis**: Optimize resume for ATS systems
 - [ ] **Industry-Specific Skills**: Expand skill database for healthcare, finance, marketing, etc.
