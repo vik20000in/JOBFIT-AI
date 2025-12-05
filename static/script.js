@@ -253,22 +253,16 @@ CERTIFICATIONS
             });
         }
 
-        // Update Cover Letter (but keep it hidden initially)
+        // Update Cover Letter
         const coverLetterText = document.getElementById('cover-letter-text');
-        const coverLetterContainer = document.getElementById('cover-letter-container');
         if (data.cover_letter) {
             coverLetterText.value = data.cover_letter;
         } else {
             coverLetterText.value = "Could not generate cover letter.";
         }
-        // Reset to hidden state
-        coverLetterContainer.classList.add('hidden');
-        const toggleLetterBtn = document.getElementById('toggle-letter-btn');
-        toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Show Smart Cover Letter';
         
-        // Update Interview Questions (but keep it hidden initially)
+        // Update Interview Questions
         const questionsList = document.getElementById('questions-list');
-        const interviewQuestionsContainer = document.getElementById('interview-questions-container');
         questionsList.innerHTML = '';
         
         if (data.interview_questions && data.interview_questions.length > 0) {
@@ -293,14 +287,8 @@ CERTIFICATIONS
             questionsList.innerHTML = '<p style="text-align:center; color:var(--text-muted);">No interview questions generated.</p>';
         }
         
-        // Reset to hidden state
-        interviewQuestionsContainer.classList.add('hidden');
-        const toggleQuestionsBtn = document.getElementById('toggle-questions-btn');
-        toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions';
-        
-        // Update Formatting Tips (but keep it hidden initially)
+        // Update Formatting Tips
         const tipsList = document.getElementById('tips-list');
-        const formattingTipsContainer = document.getElementById('formatting-tips-container');
         tipsList.innerHTML = '';
         
         if (data.formatting_tips && data.formatting_tips.length > 0) {
@@ -323,12 +311,7 @@ CERTIFICATIONS
             tipsList.innerHTML = '<p style="text-align:center; color:var(--text-muted);">No formatting tips available.</p>';
         }
         
-        // Reset to hidden state
-        formattingTipsContainer.classList.add('hidden');
-        const toggleTipsBtn = document.getElementById('toggle-tips-btn');
-        toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
-        
-        // Update Company Insights (but keep it hidden initially)
+        // Update Company Insights
         if (data.company_insights) {
             const insights = data.company_insights;
             
@@ -429,12 +412,6 @@ CERTIFICATIONS
             }
         }
         
-        // Reset to hidden state
-        const companyInsightsContainer = document.getElementById('company-insights-container');
-        companyInsightsContainer.classList.add('hidden');
-        const toggleInsightsBtn = document.getElementById('toggle-insights-btn');
-        toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Show Company & Role Insights';
-        
         // Update Tailoring Workbench
         if (data.tailoring_data) {
             const tailoringData = data.tailoring_data;
@@ -521,12 +498,6 @@ CERTIFICATIONS
             }
         }
         
-        // Reset to hidden state
-        const tailoringWorkbenchContainer = document.getElementById('tailoring-workbench-container');
-        tailoringWorkbenchContainer.classList.add('hidden');
-        const toggleWorkbenchBtn = document.getElementById('toggle-workbench-btn');
-        toggleWorkbenchBtn.innerHTML = '<i class="fas fa-tools"></i> Show Resume Tailoring Workbench';
-        
         /* Resume Builder - Hidden for future implementation
         // Update Resume Builder (but keep it hidden initially)
         const resumeBuilderText = document.getElementById('resume-builder-text');
@@ -574,18 +545,25 @@ CERTIFICATIONS
         resultsSection.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // Toggle Cover Letter Visibility
-    const toggleLetterBtn = document.getElementById('toggle-letter-btn');
-    const coverLetterContainer = document.getElementById('cover-letter-container');
+    // Tab Switching Logic
+    const resultsTabBtns = document.querySelectorAll('.results-tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
     
-    toggleLetterBtn.addEventListener('click', () => {
-        coverLetterContainer.classList.toggle('hidden');
-        
-        if (coverLetterContainer.classList.contains('hidden')) {
-            toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Show Smart Cover Letter';
-        } else {
-            toggleLetterBtn.innerHTML = '<i class="fas fa-file-signature"></i> Hide Smart Cover Letter';
-        }
+    resultsTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.dataset.tab;
+            
+            // Remove active class from all tabs and panels
+            resultsTabBtns.forEach(b => b.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding panel
+            btn.classList.add('active');
+            const targetPanel = document.getElementById(`${targetTab}-panel`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        });
     });
     
     // Copy Cover Letter Logic
@@ -600,62 +578,6 @@ CERTIFICATIONS
         setTimeout(() => {
             copyBtn.innerHTML = originalText;
         }, 2000);
-    });
-    
-    // Toggle Interview Questions Visibility
-    const toggleQuestionsBtn = document.getElementById('toggle-questions-btn');
-    const interviewQuestionsContainer = document.getElementById('interview-questions-container');
-    
-    toggleQuestionsBtn.addEventListener('click', () => {
-        interviewQuestionsContainer.classList.toggle('hidden');
-        
-        if (interviewQuestionsContainer.classList.contains('hidden')) {
-            toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions';
-        } else {
-            toggleQuestionsBtn.innerHTML = '<i class="fas fa-question-circle"></i> Hide Potential Technical Interview Questions';
-        }
-    });
-    
-    // Toggle Formatting Tips Visibility
-    const toggleTipsBtn = document.getElementById('toggle-tips-btn');
-    const formattingTipsContainer = document.getElementById('formatting-tips-container');
-    
-    toggleTipsBtn.addEventListener('click', () => {
-        formattingTipsContainer.classList.toggle('hidden');
-        
-        if (formattingTipsContainer.classList.contains('hidden')) {
-            toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
-        } else {
-            toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Hide Resume Formatting Tips';
-        }
-    });
-    
-    // Toggle Company Insights Visibility
-    const toggleInsightsBtn = document.getElementById('toggle-insights-btn');
-    const companyInsightsContainer = document.getElementById('company-insights-container');
-    
-    toggleInsightsBtn.addEventListener('click', () => {
-        companyInsightsContainer.classList.toggle('hidden');
-        
-        if (companyInsightsContainer.classList.contains('hidden')) {
-            toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Show Company & Role Insights';
-        } else {
-            toggleInsightsBtn.innerHTML = '<i class="fas fa-building"></i> Hide Company & Role Insights';
-        }
-    });
-    
-    // Toggle Tailoring Workbench Visibility
-    const toggleWorkbenchBtn = document.getElementById('toggle-workbench-btn');
-    const tailoringWorkbenchContainer = document.getElementById('tailoring-workbench-container');
-    
-    toggleWorkbenchBtn.addEventListener('click', () => {
-        tailoringWorkbenchContainer.classList.toggle('hidden');
-        
-        if (tailoringWorkbenchContainer.classList.contains('hidden')) {
-            toggleWorkbenchBtn.innerHTML = '<i class="fas fa-tools"></i> Show Resume Tailoring Workbench';
-        } else {
-            toggleWorkbenchBtn.innerHTML = '<i class="fas fa-tools"></i> Hide Resume Tailoring Workbench';
-        }
     });
     
     // Copy Tailored Resume

@@ -98,162 +98,190 @@
                     </div>
                 </div>
 
-                <div class="upskilling-plan">
-                    <h2><i class="fas fa-rocket"></i> Upskilling Plan</h2>
-                    <div id="plan-container">
-                        <!-- Plan items will be injected here -->
-                    </div>
+                <!-- Tabbed Results Navigation -->
+                <div class="results-tabs">
+                    <button class="results-tab-btn active" data-tab="upskilling">
+                        <i class="fas fa-rocket"></i> Upskilling Plan
+                    </button>
+                    <button class="results-tab-btn" data-tab="cover-letter">
+                        <i class="fas fa-file-signature"></i> Cover Letter
+                    </button>
+                    <button class="results-tab-btn" data-tab="interview">
+                        <i class="fas fa-question-circle"></i> Interview Prep
+                    </button>
+                    <button class="results-tab-btn" data-tab="formatting">
+                        <i class="fas fa-magic"></i> Formatting Tips
+                    </button>
+                    <button class="results-tab-btn" data-tab="insights">
+                        <i class="fas fa-building"></i> Company Insights
+                    </button>
+                    <button class="results-tab-btn" data-tab="tailoring">
+                        <i class="fas fa-tools"></i> Resume Tailoring
+                    </button>
                 </div>
 
-                <div class="cover-letter-section">
-                    <button id="toggle-letter-btn" class="secondary-btn"><i class="fas fa-file-signature"></i> Show Smart Cover Letter</button>
-                    <div id="cover-letter-container" class="cover-letter-container hidden">
-                        <h2><i class="fas fa-file-signature"></i> Smart Cover Letter</h2>
-                        <textarea id="cover-letter-text" readonly></textarea>
-                        <div class="cover-letter-actions">
-                            <button id="copy-letter-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="interview-questions-section">
-                    <button id="toggle-questions-btn" class="secondary-btn"><i class="fas fa-question-circle"></i> Show Potential Technical Interview Questions</button>
-                    <div id="interview-questions-container" class="interview-questions-container hidden">
-                        <h2><i class="fas fa-question-circle"></i> Potential Technical Interview Questions</h2>
-                        <div id="questions-list">
-                            <!-- Questions will be injected here -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="formatting-tips-section">
-                    <button id="toggle-tips-btn" class="secondary-btn"><i class="fas fa-magic"></i> Show Resume Formatting Tips</button>
-                    <div id="formatting-tips-container" class="formatting-tips-container hidden">
-                        <h2><i class="fas fa-magic"></i> Resume Formatting Tips</h2>
-                        <div id="tips-list">
-                            <!-- Formatting tips will be injected here -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="company-insights-section">
-                    <button id="toggle-insights-btn" class="secondary-btn"><i class="fas fa-building"></i> Show Company & Role Insights</button>
-                    <div id="company-insights-container" class="company-insights-container hidden">
-                        <h2><i class="fas fa-building"></i> Company & Role Insights</h2>
-                        
-                        <div class="insights-grid">
-                            <div class="insight-card company-overview-card">
-                                <h3><i class="fas fa-info-circle"></i> Company Overview</h3>
-                                <p id="company-overview-text"></p>
-                                <div class="company-meta">
-                                    <span id="company-size" class="meta-badge"></span>
-                                    <span id="company-industry" class="meta-badge"></span>
-                                    <span id="company-location" class="meta-badge"></span>
-                                </div>
+                <!-- Tab Content Panels -->
+                <div class="results-tab-content">
+                    <!-- Upskilling Plan Tab -->
+                    <div class="tab-panel active" id="upskilling-panel">
+                        <div class="upskilling-plan">
+                            <h2><i class="fas fa-rocket"></i> Upskilling Plan</h2>
+                            <div id="plan-container">
+                                <!-- Plan items will be injected here -->
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="insight-card culture-card">
-                                <h3><i class="fas fa-users"></i> Company Culture</h3>
-                                <div id="culture-signals">
-                                    <!-- Culture signals will be injected here -->
-                                </div>
+                    <!-- Cover Letter Tab -->
+                    <div class="tab-panel" id="cover-letter-panel">
+                        <div class="cover-letter-section">
+                            <h2><i class="fas fa-file-signature"></i> Smart Cover Letter</h2>
+                            <textarea id="cover-letter-text" readonly></textarea>
+                            <div class="cover-letter-actions">
+                                <button id="copy-letter-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="insight-card role-focus-card">
-                                <h3><i class="fas fa-briefcase"></i> Role Focus</h3>
-                                <p id="role-focus-text"></p>
-                                <div class="salary-career">
-                                    <div class="salary-info">
-                                        <strong><i class="fas fa-dollar-sign"></i> Estimated Salary:</strong>
-                                        <p id="salary-range"></p>
+                    <!-- Interview Questions Tab -->
+                    <div class="tab-panel" id="interview-panel">
+                        <div class="interview-questions-section">
+                            <h2><i class="fas fa-question-circle"></i> Potential Technical Interview Questions</h2>
+                            <div id="questions-list">
+                                <!-- Questions will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formatting Tips Tab -->
+                    <div class="tab-panel" id="formatting-panel">
+                        <div class="formatting-tips-section">
+                            <h2><i class="fas fa-magic"></i> Resume Formatting Tips</h2>
+                            <div id="tips-list">
+                                <!-- Formatting tips will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Insights Tab -->
+                    <div class="tab-panel" id="insights-panel">
+                        <div class="company-insights-section">
+                            <h2><i class="fas fa-building"></i> Company & Role Insights</h2>
+                            
+                            <div class="insights-grid">
+                                <div class="insight-card company-overview-card">
+                                    <h3><i class="fas fa-info-circle"></i> Company Overview</h3>
+                                    <p id="company-overview-text"></p>
+                                    <div class="company-meta">
+                                        <span id="company-size" class="meta-badge"></span>
+                                        <span id="company-industry" class="meta-badge"></span>
+                                        <span id="company-location" class="meta-badge"></span>
                                     </div>
-                                    <div class="career-path">
-                                        <strong><i class="fas fa-chart-line"></i> Career Path:</strong>
-                                        <p id="career-path-text"></p>
+                                </div>
+
+                                <div class="insight-card culture-card">
+                                    <h3><i class="fas fa-users"></i> Company Culture</h3>
+                                    <div id="culture-signals">
+                                        <!-- Culture signals will be injected here -->
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="insight-card emphasis-card">
-                                <h3><i class="fas fa-star"></i> What to Emphasize</h3>
-                                <ul id="emphasis-list">
-                                    <!-- Emphasis points will be injected here -->
-                                </ul>
-                            </div>
+                                <div class="insight-card role-focus-card">
+                                    <h3><i class="fas fa-briefcase"></i> Role Focus</h3>
+                                    <p id="role-focus-text"></p>
+                                    <div class="salary-career">
+                                        <div class="salary-info">
+                                            <strong><i class="fas fa-dollar-sign"></i> Estimated Salary:</strong>
+                                            <p id="salary-range"></p>
+                                        </div>
+                                        <div class="career-path">
+                                            <strong><i class="fas fa-chart-line"></i> Career Path:</strong>
+                                            <p id="career-path-text"></p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div class="insight-card tips-card">
-                                <h3><i class="fas fa-lightbulb"></i> Application Tips</h3>
-                                <ul id="application-tips-list">
-                                    <!-- Application tips will be injected here -->
-                                </ul>
-                            </div>
-
-                            <div class="insight-card flags-card">
-                                <div class="flags-section">
-                                    <h4><i class="fas fa-check-circle"></i> Green Flags</h4>
-                                    <ul id="green-flags-list">
-                                        <!-- Green flags will be injected here -->
+                                <div class="insight-card emphasis-card">
+                                    <h3><i class="fas fa-star"></i> What to Emphasize</h3>
+                                    <ul id="emphasis-list">
+                                        <!-- Emphasis points will be injected here -->
                                     </ul>
                                 </div>
-                                <div class="flags-section">
-                                    <h4><i class="fas fa-exclamation-triangle"></i> Red Flags</h4>
-                                    <ul id="red-flags-list">
-                                        <!-- Red flags will be injected here -->
+
+                                <div class="insight-card tips-card">
+                                    <h3><i class="fas fa-lightbulb"></i> Application Tips</h3>
+                                    <ul id="application-tips-list">
+                                        <!-- Application tips will be injected here -->
                                     </ul>
+                                </div>
+
+                                <div class="insight-card flags-card">
+                                    <div class="flags-section">
+                                        <h4><i class="fas fa-check-circle"></i> Green Flags</h4>
+                                        <ul id="green-flags-list">
+                                            <!-- Green flags will be injected here -->
+                                        </ul>
+                                    </div>
+                                    <div class="flags-section">
+                                        <h4><i class="fas fa-exclamation-triangle"></i> Red Flags</h4>
+                                        <ul id="red-flags-list">
+                                            <!-- Red flags will be injected here -->
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="tailoring-workbench-section">
-                    <button id="toggle-workbench-btn" class="secondary-btn"><i class="fas fa-tools"></i> Show Resume Tailoring Workbench</button>
-                    <div id="tailoring-workbench-container" class="tailoring-workbench-container hidden">
-                        <h2><i class="fas fa-tools"></i> Resume Tailoring Workbench</h2>
-                        <p class="workbench-description">
-                            See exactly where to add missing skills to maximize your match score. 
-                            <strong id="coverage-improvement"></strong>
-                        </p>
-                        
-                        <div class="improvement-stats">
-                            <div class="stat-card">
-                                <i class="fas fa-plus-circle"></i>
-                                <div class="stat-value" id="skills-added-stat">0</div>
-                                <div class="stat-label">Skills Added</div>
+                    <!-- Resume Tailoring Tab -->
+                    <div class="tab-panel" id="tailoring-panel">
+                        <div class="tailoring-workbench-section">
+                            <h2><i class="fas fa-tools"></i> Resume Tailoring Workbench</h2>
+                            <p class="workbench-description">
+                                See exactly where to add missing skills to maximize your match score. 
+                                <strong id="coverage-improvement"></strong>
+                            </p>
+                            
+                            <div class="improvement-stats">
+                                <div class="stat-card">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <div class="stat-value" id="skills-added-stat">0</div>
+                                    <div class="stat-label">Skills Added</div>
+                                </div>
+                                <div class="stat-card">
+                                    <i class="fas fa-edit"></i>
+                                    <div class="stat-value" id="lines-enhanced-stat">0</div>
+                                    <div class="stat-label">Lines Enhanced</div>
+                                </div>
+                                <div class="stat-card">
+                                    <i class="fas fa-check-double"></i>
+                                    <div class="stat-value" id="total-changes-stat">0</div>
+                                    <div class="stat-label">Total Changes</div>
+                                </div>
                             </div>
-                            <div class="stat-card">
-                                <i class="fas fa-edit"></i>
-                                <div class="stat-value" id="lines-enhanced-stat">0</div>
-                                <div class="stat-label">Lines Enhanced</div>
-                            </div>
-                            <div class="stat-card">
-                                <i class="fas fa-check-double"></i>
-                                <div class="stat-value" id="total-changes-stat">0</div>
-                                <div class="stat-label">Total Changes</div>
-                            </div>
-                        </div>
 
-                        <div class="suggestions-panel">
-                            <h3><i class="fas fa-lightbulb"></i> Tailoring Suggestions</h3>
-                            <div id="suggestions-list" class="suggestions-list">
-                                <!-- Suggestions will be injected here -->
+                            <div class="suggestions-panel">
+                                <h3><i class="fas fa-lightbulb"></i> Tailoring Suggestions</h3>
+                                <div id="suggestions-list" class="suggestions-list">
+                                    <!-- Suggestions will be injected here -->
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="diff-viewer">
-                            <div class="diff-column">
-                                <h3><i class="fas fa-file-alt"></i> Your Original Resume</h3>
-                                <pre id="original-resume-display" class="resume-display"></pre>
-                            </div>
-                            <div class="diff-arrow">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                            <div class="diff-column">
-                                <h3><i class="fas fa-file-signature"></i> AI-Tailored Version</h3>
-                                <pre id="tailored-resume-display" class="resume-display highlighted"></pre>
-                                <div class="diff-actions">
-                                    <button id="copy-tailored-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy Tailored Resume</button>
-                                    <button id="download-tailored-btn" class="primary-btn"><i class="fas fa-download"></i> Download</button>
+                            <div class="diff-viewer">
+                                <div class="diff-column">
+                                    <h3><i class="fas fa-file-alt"></i> Your Original Resume</h3>
+                                    <pre id="original-resume-display" class="resume-display"></pre>
+                                </div>
+                                <div class="diff-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="diff-column">
+                                    <h3><i class="fas fa-file-signature"></i> AI-Tailored Version</h3>
+                                    <pre id="tailored-resume-display" class="resume-display highlighted"></pre>
+                                    <div class="diff-actions">
+                                        <button id="copy-tailored-btn" class="secondary-btn"><i class="fas fa-copy"></i> Copy Tailored Resume</button>
+                                        <button id="download-tailored-btn" class="primary-btn"><i class="fas fa-download"></i> Download</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

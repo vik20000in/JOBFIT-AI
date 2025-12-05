@@ -210,6 +210,98 @@ button:active {
 
 /* Results Section */
 .results-section {
+    margin-top: 2rem;
+}
+
+/* Results Tabs */
+.results-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0 0 0;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0;
+}
+
+.results-tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    bottom: -2px;
+}
+
+.results-tab-btn:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 85, 135, 0.05);
+}
+
+.results-tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.results-tab-btn i {
+    font-size: 1.1rem;
+}
+
+.results-tab-content {
+    margin-top: 0;
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Tabs */
+@media (max-width: 768px) {
+    .results-tabs {
+        flex-direction: column;
+        border-bottom: none;
+    }
+    
+    .results-tab-btn {
+        border-bottom: none;
+        border-left: 3px solid transparent;
+        justify-content: flex-start;
+        padding: 0.75rem 1rem;
+    }
+    
+    .results-tab-btn.active {
+        border-left-color: var(--primary-color);
+        border-bottom-color: transparent;
+        background-color: rgba(0, 85, 135, 0.1);
+    }
+}
+
+/* Results Section */
+.results-section {
     background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
