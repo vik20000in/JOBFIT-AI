@@ -138,6 +138,8 @@ jobfit-ai/
 ### Phase 1: Enhanced Analysis 🔍
 - [x] **Resume Section Parser**: Automatically extract work experience, education, certifications, and projects ✅
 - [x] **Resume Diff & Auto-Tailoring**: Side-by-side comparison with intelligent skill insertion suggestions ✅
+- [x] **Resume Formatting Tips**: AI-powered suggestions for layout and structure ✅
+- [x] **Company & Role Insights**: Automatic company culture analysis, salary estimates, and strategic tips ✅
 - [ ] **ATS Score**: Calculate Applicant Tracking System compatibility score
 - [ ] **Keyword Density Analysis**: Optimize resume for ATS systems
 - [ ] **Industry-Specific Skills**: Expand skill database for healthcare, finance, marketing, etc.
@@ -145,8 +147,8 @@ jobfit-ai/
 ### Phase 2: Advanced AI Features 🤖
 - [ ] **Multi-language Support**: Analyze resumes in Spanish, French, German, etc.
 - [ ] **Sentiment Analysis**: Assess tone and professionalism of resume content
-- [x] **Resume Formatting Tips**: AI-powered suggestions for layout and structure ✅
-- [x] **Company & Role Insights**: Automatic company culture analysis, salary estimates, and strategic tips ✅
+- [ ] **Resume Quality Scoring**: Overall resume quality assessment with improvement metrics
+- [ ] **Skill Proficiency Levels**: Detect and recommend appropriate skill level descriptions (beginner/intermediate/expert)
 
 ### Phase 3: Career Intelligence 📊
 - [ ] **Job Market Insights**: Real-time salary ranges and demand trends (via APIs like Glassdoor/LinkedIn)
