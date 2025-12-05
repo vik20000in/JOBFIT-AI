@@ -302,9 +302,16 @@ def generate_tailoring_analysis(resume_text, jd_text, missing_skills, matched_sk
     highlights = create_diff_highlights(resume_text, tailored_resume)
     
     # Generate improvement summary
+    skills_added_count = 0
+    for mod in modifications:
+        if mod and mod.get('type') == 'skill_addition' and 'skills' in mod:
+            skills_added_count += len(mod['skills'])
+        elif mod and mod.get('type') == 'line_enhancement' and 'skill' in mod:
+            skills_added_count += 1
+    
     improvement_summary = {
-        'skills_added': len(set(mod['skills'] if 'skills' in mod else [mod.get('skill', '')] for mod in modifications if mod)),
-        'lines_enhanced': len([mod for mod in modifications if mod['type'] == 'line_enhancement']),
+        'skills_added': skills_added_count,
+        'lines_enhanced': len([mod for mod in modifications if mod and mod.get('type') == 'line_enhancement']),
         'total_changes': len(modifications),
         'coverage_improvement': f"+{min(len(missing_skills) * 5, 25)}%"  # Rough estimate
     }
