@@ -474,3 +474,63 @@ footer {
 .file-upload-box input[type="file"] {
     margin-bottom: 1rem;
 }
+
+/* Cover Letter Section */
+.cover-letter-section {
+    margin-bottom: 3rem;
+}
+
+.cover-letter-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.cover-letter-container {
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+#cover-letter-text {
+    width: 100%;
+    height: 300px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    resize: vertical;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.cover-letter-actions {
+    text-align: right;
+}
+
+.secondary-btn {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.secondary-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}

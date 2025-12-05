@@ -1,6 +1,7 @@
 import re
 import random
 from sentence_transformers import SentenceTransformer, util
+from utils.generator import generate_cover_letter
 
 # Load a lightweight, efficient model for semantic similarity
 # This runs locally and requires no API key
@@ -113,11 +114,15 @@ def analyze_job_match(jd_text, resume_text):
     
     upskilling_plan = generate_upskilling_plan(missing_skills)
     
+    # Generate Cover Letter
+    cover_letter = generate_cover_letter(jd_text, matched_skills)
+    
     return {
         "score": match_score,
         "jd_skills": list(jd_skills),
         "resume_skills": list(resume_skills),
         "matched_skills": matched_skills,
         "missing_skills": missing_skills,
-        "upskilling_plan": upskilling_plan
+        "upskilling_plan": upskilling_plan,
+        "cover_letter": cover_letter
     }

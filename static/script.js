@@ -163,6 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 missingList.appendChild(li);
             });
         }
+
+        // Update Cover Letter
+        const coverLetterText = document.getElementById('cover-letter-text');
+        if (data.cover_letter) {
+            coverLetterText.value = data.cover_letter;
+        } else {
+            coverLetterText.value = "Could not generate cover letter.";
+        }
         
         // Update Upskilling Plan
         const planContainer = document.getElementById('plan-container');
@@ -195,4 +203,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scroll to results
         resultsSection.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    // Copy Cover Letter Logic
+    const copyBtn = document.getElementById('copy-letter-btn');
+    copyBtn.addEventListener('click', () => {
+        const coverLetterText = document.getElementById('cover-letter-text');
+        coverLetterText.select();
+        document.execCommand('copy');
+        
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+        }, 2000);
+    });
 });
