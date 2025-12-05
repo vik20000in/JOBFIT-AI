@@ -202,30 +202,33 @@ CERTIFICATIONS
         // Update Score with Animation
         const scoreValue = document.getElementById('score-value');
         const circle = document.querySelector('.progress-ring__circle');
-        const radius = circle.r.baseVal.value;
-        const circumference = radius * 2 * Math.PI;
         
-        circle.style.strokeDasharray = `${circumference} ${circumference}`;
-        circle.style.strokeDashoffset = circumference;
-        
-        const offset = circumference - (data.score / 100) * circumference;
-        
-        // Animate the number
-        let currentScore = 0;
-        const interval = setInterval(() => {
-            if (currentScore >= data.score) {
-                clearInterval(interval);
-                scoreValue.textContent = data.score;
-            } else {
-                currentScore++;
-                scoreValue.textContent = currentScore;
-            }
-        }, 20);
-        
-        // Animate the circle
-        setTimeout(() => {
-            circle.style.strokeDashoffset = offset;
-        }, 100);
+        if (circle && scoreValue) {
+            const radius = circle.r.baseVal.value;
+            const circumference = radius * 2 * Math.PI;
+            
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = circumference;
+            
+            const offset = circumference - (data.score / 100) * circumference;
+            
+            // Animate the number
+            let currentScore = 0;
+            const interval = setInterval(() => {
+                if (currentScore >= data.score) {
+                    clearInterval(interval);
+                    scoreValue.textContent = data.score;
+                } else {
+                    currentScore++;
+                    scoreValue.textContent = currentScore;
+                }
+            }, 20);
+            
+            // Animate the circle
+            setTimeout(() => {
+                circle.style.strokeDashoffset = offset;
+            }, 100);
+        }
         
         // Update Matched Skills
         const matchedList = document.getElementById('matched-skills-list');
