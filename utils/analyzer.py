@@ -1,9 +1,10 @@
 import re
 import random
 from sentence_transformers import SentenceTransformer, util
-from utils.generator import generate_cover_letter
+from utils.generator import generate_cover_letter, extract_name
 from utils.interview_generator import generate_interview_questions
 from utils.resume_formatter import analyze_resume_structure
+from utils.resume_builder import generate_resume_template
 
 # Load a lightweight, efficient model for semantic similarity
 # This runs locally and requires no API key
@@ -125,6 +126,16 @@ def analyze_job_match(jd_text, resume_text):
     # Analyze Resume Formatting
     formatting_tips = analyze_resume_structure(resume_text)
     
+    # Generate Improved Resume Template
+    candidate_name = extract_name(resume_text)
+    improved_resume = generate_resume_template(
+        resume_text, 
+        candidate_name, 
+        formatting_tips, 
+        matched_skills, 
+        missing_skills
+    )
+    
     return {
         "score": match_score,
         "jd_skills": list(jd_skills),
@@ -134,5 +145,6 @@ def analyze_job_match(jd_text, resume_text):
         "upskilling_plan": upskilling_plan,
         "cover_letter": cover_letter,
         "interview_questions": interview_questions,
-        "formatting_tips": formatting_tips
+        "formatting_tips": formatting_tips,
+        "improved_resume": improved_resume
     }

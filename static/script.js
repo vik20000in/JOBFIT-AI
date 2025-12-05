@@ -239,6 +239,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleTipsBtn = document.getElementById('toggle-tips-btn');
         toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
         
+        // Update Resume Builder (but keep it hidden initially)
+        const resumeBuilderText = document.getElementById('resume-builder-text');
+        const resumeBuilderContainer = document.getElementById('resume-builder-container');
+        if (data.improved_resume) {
+            resumeBuilderText.value = data.improved_resume;
+        } else {
+            resumeBuilderText.value = "Could not generate resume template.";
+        }
+        // Reset to hidden state
+        resumeBuilderContainer.classList.add('hidden');
+        const toggleBuilderBtn = document.getElementById('toggle-builder-btn');
+        toggleBuilderBtn.innerHTML = '<i class="fas fa-file-edit"></i> Show Improved Resume Builder';
+        
         // Update Upskilling Plan
         const planContainer = document.getElementById('plan-container');
         planContainer.innerHTML = '';
@@ -325,5 +338,55 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Hide Resume Formatting Tips';
         }
+    });
+    
+    // Toggle Resume Builder Visibility
+    const toggleBuilderBtn = document.getElementById('toggle-builder-btn');
+    const resumeBuilderContainer = document.getElementById('resume-builder-container');
+    
+    toggleBuilderBtn.addEventListener('click', () => {
+        resumeBuilderContainer.classList.toggle('hidden');
+        
+        if (resumeBuilderContainer.classList.contains('hidden')) {
+            toggleBuilderBtn.innerHTML = '<i class="fas fa-file-edit"></i> Show Improved Resume Builder';
+        } else {
+            toggleBuilderBtn.innerHTML = '<i class="fas fa-file-edit"></i> Hide Improved Resume Builder';
+        }
+    });
+    
+    // Download Resume
+    const downloadResumeBtn = document.getElementById('download-resume-btn');
+    downloadResumeBtn.addEventListener('click', () => {
+        const resumeText = document.getElementById('resume-builder-text').value;
+        const blob = new Blob([resumeText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Improved_Resume_' + new Date().toISOString().split('T')[0] + '.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        // Visual feedback
+        const originalText = downloadResumeBtn.innerHTML;
+        downloadResumeBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+        setTimeout(() => {
+            downloadResumeBtn.innerHTML = originalText;
+        }, 2000);
+    });
+    
+    // Copy Resume to Clipboard
+    const copyResumeBtn = document.getElementById('copy-resume-btn');
+    copyResumeBtn.addEventListener('click', () => {
+        const resumeBuilderText = document.getElementById('resume-builder-text');
+        resumeBuilderText.select();
+        document.execCommand('copy');
+        
+        const originalText = copyResumeBtn.innerHTML;
+        copyResumeBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        setTimeout(() => {
+            copyResumeBtn.innerHTML = originalText;
+        }, 2000);
     });
 });
