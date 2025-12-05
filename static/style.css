@@ -412,3 +412,65 @@ footer {
     border-top: 1px solid var(--border-color);
     background-color: var(--nav-bg);
 }
+
+/* Tabs and File Upload */
+.tab-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+    background: none;
+    transform: none;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.input-content {
+    display: none;
+}
+
+.input-content.active {
+    display: block;
+}
+
+.file-upload-box {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--bg-color);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-upload-box:hover {
+    border-color: var(--primary-color);
+}
+
+.file-upload-box input[type="file"] {
+    margin-bottom: 1rem;
+}

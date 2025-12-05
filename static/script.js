@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const analyzeBtn = document.getElementById('analyze-btn');
     const jdInput = document.getElementById('jd-text');
     const resumeInput = document.getElementById('resume-text');
+    const jdFileInput = document.getElementById('jd-file');
+    const resumeFileInput = document.getElementById('resume-file');
     const errorMsg = document.getElementById('error-msg');
     const resultsSection = document.getElementById('results-section');
     const themeSelect = document.getElementById('theme-select');
@@ -16,6 +18,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Tab Switching Logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetId = e.target.dataset.target;
+            const parentGroup = e.target.closest('.input-group');
+            
+            // Remove active class from all tabs in this group
+            parentGroup.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            // Add active class to clicked tab
+            e.target.classList.add('active');
+            
+            // Hide all content in this group
+            parentGroup.querySelectorAll('.input-content').forEach(c => c.classList.remove('active', 'hidden'));
+            parentGroup.querySelectorAll('.input-content').forEach(c => {
+                if (c.id !== targetId) c.classList.add('hidden');
+            });
+            
+            // Show target content
+            parentGroup.querySelector(`#${targetId}`).classList.add('active');
+        });
+    });
+
     analyzeBtn.addEventListener('click', async () => {
         // Reset UI
         errorMsg.classList.add('hidden');
@@ -23,12 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
         analyzeBtn.disabled = true;
         analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
         
-        const jdText = jdInput.value.trim();
-        const resumeText = resumeInput.value.trim();
+        const formData = new FormData();
+        let hasJd = false;
+        let hasResume = false;
+
+        // Check JD Input (Text or File)
+        if (jdFileInput.files.length > 0) {
+            formData.append('jd_file', jdFileInput.files[0]);
+            hasJd = true;
+        } else if (jdInput.value.trim()) {
+            formData.append('jd_text', jdInput.value.trim());
+            hasJd = true;
+        }
+
+        // Check Resume Input (Text or File)
+        if (resumeFileInput.files.length > 0) {
+            formData.append('resume_file', resumeFileInput.files[0]);
+            hasResume = true;
+        } else if (resumeInput.value.trim()) {
+            formData.append('resume_text', resumeInput.value.trim());
+            hasResume = true;
+        }
         
         // Basic Validation
-        if (!jdText || !resumeText) {
-            showError("Please provide both a Job Description and a Resume.");
+        if (!hasJd || !hasResume) {
+            showError("Please provide both a Job Description and a Resume (Text or File).");
             resetButton();
             return;
         }
@@ -36,13 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/api/analyze', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    jd_text: jdText,
-                    resume_text: resumeText
-                })
+                body: formData // Fetch automatically sets Content-Type to multipart/form-data
             });
             
             const result = await response.json();

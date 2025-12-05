@@ -35,11 +35,36 @@
             <div class="input-section">
                 <div class="input-group">
                     <label for="jd-text"><i class="fas fa-file-alt"></i> Job Description (JD)</label>
-                    <textarea id="jd-text" placeholder="Paste the job description here..."></textarea>
+                    <div class="tab-container">
+                        <button class="tab-btn active" data-target="jd-text-input">Paste Text</button>
+                        <button class="tab-btn" data-target="jd-file-input">Upload File</button>
+                    </div>
+                    <div id="jd-text-input" class="input-content active">
+                        <textarea id="jd-text" placeholder="Paste the job description here..."></textarea>
+                    </div>
+                    <div id="jd-file-input" class="input-content hidden">
+                        <div class="file-upload-box">
+                            <input type="file" id="jd-file" accept=".pdf,.docx,.txt">
+                            <p>Drag & drop or click to upload JD (PDF, DOCX, TXT)</p>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="input-group">
                     <label for="resume-text"><i class="fas fa-user-tie"></i> Resume / CV</label>
-                    <textarea id="resume-text" placeholder="Paste your resume content here..."></textarea>
+                    <div class="tab-container">
+                        <button class="tab-btn active" data-target="resume-text-input">Paste Text</button>
+                        <button class="tab-btn" data-target="resume-file-input">Upload File</button>
+                    </div>
+                    <div id="resume-text-input" class="input-content active">
+                        <textarea id="resume-text" placeholder="Paste your resume content here..."></textarea>
+                    </div>
+                    <div id="resume-file-input" class="input-content hidden">
+                        <div class="file-upload-box">
+                            <input type="file" id="resume-file" accept=".pdf,.docx,.txt">
+                            <p>Drag & drop or click to upload Resume (PDF, DOCX, TXT)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
