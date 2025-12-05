@@ -4,13 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const resumeInput = document.getElementById('resume-text');
     const errorMsg = document.getElementById('error-msg');
     const resultsSection = document.getElementById('results-section');
+    const themeSelect = document.getElementById('theme-select');
     
+    // Theme Switching Logic
+    themeSelect.addEventListener('change', (e) => {
+        const theme = e.target.value;
+        if (theme === 'wipro') {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+    });
+
     analyzeBtn.addEventListener('click', async () => {
         // Reset UI
         errorMsg.classList.add('hidden');
         resultsSection.classList.add('hidden');
         analyzeBtn.disabled = true;
-        analyzeBtn.textContent = "Analyzing...";
+        analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
         
         const jdText = jdInput.value.trim();
         const resumeText = resumeInput.value.trim();
@@ -56,12 +67,39 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function resetButton() {
         analyzeBtn.disabled = false;
-        analyzeBtn.textContent = "Analyze Match";
+        analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Analyze Match';
     }
     
     function displayResults(data) {
-        // Update Score
-        document.getElementById('score-value').textContent = data.score;
+        resultsSection.classList.remove('hidden');
+        
+        // Update Score with Animation
+        const scoreValue = document.getElementById('score-value');
+        const circle = document.querySelector('.progress-ring__circle');
+        const radius = circle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
+        
+        const offset = circumference - (data.score / 100) * circumference;
+        
+        // Animate the number
+        let currentScore = 0;
+        const interval = setInterval(() => {
+            if (currentScore >= data.score) {
+                clearInterval(interval);
+                scoreValue.textContent = data.score;
+            } else {
+                currentScore++;
+                scoreValue.textContent = currentScore;
+            }
+        }, 20);
+        
+        // Animate the circle
+        setTimeout(() => {
+            circle.style.strokeDashoffset = offset;
+        }, 100);
         
         // Update Matched Skills
         const matchedList = document.getElementById('matched-skills-list');
@@ -71,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             data.matched_skills.forEach(skill => {
                 const li = document.createElement('li');
-                li.textContent = skill;
+                li.innerHTML = `<i class="fas fa-check"></i> ${skill}`;
                 matchedList.appendChild(li);
             });
         }
@@ -84,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             data.missing_skills.forEach(skill => {
                 const li = document.createElement('li');
-                li.textContent = skill;
+                li.innerHTML = `<i class="fas fa-times"></i> ${skill}`;
                 missingList.appendChild(li);
             });
         }
