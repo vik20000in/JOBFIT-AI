@@ -1,5 +1,12 @@
 import re
 import random
+from sentence_transformers import SentenceTransformer, util
+
+# Load a lightweight, efficient model for semantic similarity
+# This runs locally and requires no API key
+print("Loading AI Model (all-MiniLM-L6-v2)...")
+model = SentenceTransformer('all-MiniLM-L6-v2')
+print("AI Model Loaded.")
 
 # A small dictionary of common technical and soft skills for extraction
 COMMON_SKILLS = {
@@ -7,7 +14,8 @@ COMMON_SKILLS = {
     "sql", "nosql", "mongodb", "postgresql", "aws", "azure", "docker", "kubernetes",
     "git", "agile", "scrum", "communication", "leadership", "problem solving",
     "machine learning", "data analysis", "pandas", "numpy", "tensorflow", "pytorch",
-    "c++", "c#", "go", "rust", "typescript", "angular", "vue", "rest api", "graphql"
+    "c++", "c#", "go", "rust", "typescript", "angular", "vue", "rest api", "graphql",
+    "reactjs", "react.js", "postgres", "postgresql", "aws services", "amazon web services"
 }
 
 def extract_skills(text):
@@ -31,16 +39,44 @@ def extract_skills(text):
             
     return found_skills
 
-def calculate_match_score(jd_skills, resume_skills):
+def calculate_semantic_match(jd_skills, resume_skills):
     """
-    Computes the match score based on the intersection of JD and Resume skills.
+    Computes the match score based on Semantic Similarity using Sentence Transformers.
+    This handles synonyms (e.g., "ReactJS" vs "React") automatically.
     """
     if not jd_skills:
-        return 0
+        return 0, [], []
     
-    matching_skills = jd_skills.intersection(resume_skills)
-    score = (len(matching_skills) / len(jd_skills)) * 100
-    return round(score, 2)
+    jd_skills_list = list(jd_skills)
+    resume_skills_list = list(resume_skills)
+    
+    if not resume_skills_list:
+        return 0, [], jd_skills_list
+
+    # Encode skills to vector embeddings
+    jd_embeddings = model.encode(jd_skills_list, convert_to_tensor=True)
+    resume_embeddings = model.encode(resume_skills_list, convert_to_tensor=True)
+
+    # Compute cosine similarity matrix
+    cosine_scores = util.cos_sim(jd_embeddings, resume_embeddings)
+    
+    matched_skills = set()
+    missing_skills = set()
+    
+    # Threshold for semantic match (0.7 is usually a good balance)
+    threshold = 0.7
+    
+    for i, jd_skill in enumerate(jd_skills_list):
+        # Find the best match for this JD skill in the resume skills
+        best_score = cosine_scores[i].max()
+        
+        if best_score >= threshold:
+            matched_skills.add(jd_skill)
+        else:
+            missing_skills.add(jd_skill)
+            
+    score = (len(matched_skills) / len(jd_skills)) * 100
+    return round(score, 2), list(matched_skills), list(missing_skills)
 
 def generate_upskilling_plan(missing_skills):
     """
@@ -57,7 +93,7 @@ def generate_upskilling_plan(missing_skills):
             "skill": skill.title(),
             "course_name": f"Mastering {skill.title()} on {platform}",
             "platform": platform,
-            "link": "#", # Mock link
+            "link": f"https://www.google.com/search?q=learn+{skill}+course", # Real search link
             "practice_task": f"Build a small project using {skill.title()}",
             "timeline": f"{random.randint(1, 4)} weeks"
         }
@@ -67,14 +103,13 @@ def generate_upskilling_plan(missing_skills):
 
 def analyze_job_match(jd_text, resume_text):
     """
-    Main function to coordinate the analysis.
+    Main function to coordinate the analysis using Local AI.
     """
     jd_skills = extract_skills(jd_text)
     resume_skills = extract_skills(resume_text)
     
-    match_score = calculate_match_score(jd_skills, resume_skills)
-    missing_skills = list(jd_skills - resume_skills)
-    matched_skills = list(jd_skills.intersection(resume_skills))
+    # Use Semantic Matching instead of simple set intersection
+    match_score, matched_skills, missing_skills = calculate_semantic_match(jd_skills, resume_skills)
     
     upskilling_plan = generate_upskilling_plan(missing_skills)
     

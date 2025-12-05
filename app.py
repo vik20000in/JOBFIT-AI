@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from utils.analyzer import analyze_job_match
 from utils.file_parser import extract_text_from_file
+import os
 
 app = Flask(__name__)
 

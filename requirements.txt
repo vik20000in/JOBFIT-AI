@@ -2,3 +2,5 @@ flask
 pypdf
 python-docx
 werkzeug
+sentence-transformers
+numpy
