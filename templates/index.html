@@ -12,7 +12,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <i class="fas fa-briefcase"></i> JobFit AI
+                <i class="fas fa-briefcase"></i>
+                <div class="logo-text">
+                    <span class="logo-title">JobFit AI</span>
+                    <span class="logo-subtitle">Resume Matcher & Upskilling</span>
+                </div>
             </div>
             <div class="theme-selector">
                 <label for="theme-select">Theme:</label>
@@ -26,11 +30,6 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1>Resume Matcher & Upskilling</h1>
-            <p>Analyze your fit for the job and get a personalized upskilling plan.</p>
-        </header>
-
         <main>
             <div class="input-section">
                 <div class="input-group">
@@ -307,8 +306,13 @@
     </div>
     
     <footer>
-        <p>&copy; 2025 JobFit AI. Enterprise Edition.</p>
+        <p>&copy; 2024-2025 JobFit AI. Enterprise Edition.</p>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
