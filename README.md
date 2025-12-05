@@ -12,6 +12,8 @@
 - **📚 Personalized Upskilling Plan**: Generates tailored learning roadmaps with course recommendations, practice tasks, and timelines
 - **✉️ Smart Cover Letter Generator**: One-click generation of professional, tailored cover letters based on JD and candidate experience
 - **💡 Technical Interview Questions**: AI-generated interview questions specific to the job role with difficulty levels and categories
+- **🏢 Company & Role Insights**: Comprehensive analysis including company culture, salary estimates, career paths, and strategic application tips
+- **✨ Resume Formatting Tips**: AI-powered analysis of resume structure with actionable suggestions
 
 ### User Experience
 - **🎨 Enterprise UI**: Professional, Wipro-inspired design with multiple themes (Enterprise Blue, Modern Dark, Clean Minimal)
@@ -92,6 +94,8 @@
    - 📚 **Upskilling Plan**: Recommended courses and timelines
    - ✉️ **Cover Letter**: Click "Show Smart Cover Letter" for a tailored letter
    - 💡 **Interview Prep**: Click "Show Potential Technical Interview Questions" for role-specific questions
+   - ✨ **Formatting Tips**: Click "Show Resume Formatting Tips" for structure improvements
+   - 🏢 **Company Insights**: Click "Show Company & Role Insights" for strategic intelligence
 
 ### Pro Tips
 - Use specific job descriptions for better accuracy
@@ -113,7 +117,10 @@ jobfit-ai/
 │   ├── analyzer.py            # Core AI matching logic
 │   ├── file_parser.py         # PDF/DOCX text extraction
 │   ├── generator.py           # Cover letter generation
-│   └── interview_generator.py # Interview question generation
+│   ├── interview_generator.py # Interview question generation
+│   ├── resume_formatter.py    # Resume structure analysis
+│   ├── resume_builder.py      # Resume template generation
+│   └── company_insights.py    # Company & role analysis
 ├── templates/
 │   └── index.html             # Main HTML template
 └── static/
@@ -134,8 +141,8 @@ jobfit-ai/
 ### Phase 2: Advanced AI Features 🤖
 - [ ] **Multi-language Support**: Analyze resumes in Spanish, French, German, etc.
 - [ ] **Sentiment Analysis**: Assess tone and professionalism of resume content
-- [ ] **Resume Formatting Tips**: AI-powered suggestions for layout and structure
-- [ ] **Job Description Analyzer**: Identify red flags, company culture signals, and compensation insights
+- [x] **Resume Formatting Tips**: AI-powered suggestions for layout and structure ✅
+- [x] **Company & Role Insights**: Automatic company culture analysis, salary estimates, and strategic tips ✅
 
 ### Phase 3: Career Intelligence 📊
 - [ ] **Job Market Insights**: Real-time salary ranges and demand trends (via APIs like Glassdoor/LinkedIn)
