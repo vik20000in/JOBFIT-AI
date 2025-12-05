@@ -239,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleTipsBtn = document.getElementById('toggle-tips-btn');
         toggleTipsBtn.innerHTML = '<i class="fas fa-magic"></i> Show Resume Formatting Tips';
         
+        /* Resume Builder - Hidden for future implementation
         // Update Resume Builder (but keep it hidden initially)
         const resumeBuilderText = document.getElementById('resume-builder-text');
         const resumeBuilderContainer = document.getElementById('resume-builder-container');
@@ -251,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resumeBuilderContainer.classList.add('hidden');
         const toggleBuilderBtn = document.getElementById('toggle-builder-btn');
         toggleBuilderBtn.innerHTML = '<i class="fas fa-file-edit"></i> Show Improved Resume Builder';
+        */
         
         // Update Upskilling Plan
         const planContainer = document.getElementById('plan-container');
@@ -340,6 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    /* Resume Builder - Hidden for future implementation
     // Toggle Resume Builder Visibility
     const toggleBuilderBtn = document.getElementById('toggle-builder-btn');
     const resumeBuilderContainer = document.getElementById('resume-builder-container');
@@ -389,4 +392,5 @@ document.addEventListener('DOMContentLoaded', () => {
             copyResumeBtn.innerHTML = originalText;
         }, 2000);
     });
+    */
 });
