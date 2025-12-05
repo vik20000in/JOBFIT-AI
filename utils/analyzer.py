@@ -115,7 +115,7 @@ def analyze_job_match(jd_text, resume_text):
     upskilling_plan = generate_upskilling_plan(missing_skills)
     
     # Generate Cover Letter
-    cover_letter = generate_cover_letter(jd_text, matched_skills)
+    cover_letter = generate_cover_letter(jd_text, matched_skills, resume_text)
     
     return {
         "score": match_score,

@@ -1,5 +1,34 @@
 import re
 
+def extract_name(resume_text):
+    """
+    Extracts the candidate's name from resume text using heuristics.
+    Assumes name is typically at the beginning of the resume.
+    """
+    if not resume_text:
+        return "[Your Name]"
+    
+    # Split into lines and get first few non-empty lines
+    lines = [line.strip() for line in resume_text.split('\n') if line.strip()]
+    
+    if not lines:
+        return "[Your Name]"
+    
+    # Check for explicit "Name:" pattern
+    name_match = re.search(r'(?:Name|Full Name)\s*[:|-]\s*([^\n\r]+)', resume_text, re.IGNORECASE)
+    if name_match:
+        return name_match.group(1).strip()
+    
+    # Otherwise, assume first line is the name if it's short (< 50 chars) and doesn't look like a title
+    first_line = lines[0]
+    if len(first_line) < 50 and not any(keyword in first_line.lower() for keyword in ['resume', 'cv', 'curriculum', 'profile', 'objective']):
+        # Check if it looks like a name (2-4 words, mostly alphabetic)
+        words = first_line.split()
+        if 1 <= len(words) <= 4 and all(word.replace('.', '').replace(',', '').isalpha() or len(word) <= 2 for word in words):
+            return first_line
+    
+    return "[Your Name]"
+
 def extract_job_details(jd_text):
     """
     Extracts Job Title and Company Name from JD text using simple heuristics.
@@ -20,11 +49,12 @@ def extract_job_details(jd_text):
         
     return job_title, company
 
-def generate_cover_letter(jd_text, matched_skills):
+def generate_cover_letter(jd_text, matched_skills, resume_text=""):
     """
     Generates a simple template-based cover letter.
     """
     job_title, company = extract_job_details(jd_text)
+    candidate_name = extract_name(resume_text)
     
     # Format skills for the letter
     if matched_skills:
@@ -49,6 +79,6 @@ Thank you for considering my application. I look forward to the possibility of d
 
 Sincerely,
 
-[Your Name]"""
+{candidate_name}"""
 
     return letter
